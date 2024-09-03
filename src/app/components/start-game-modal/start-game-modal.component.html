@@ -1,0 +1,13 @@
+<div class="p-6">
+  <h2 class="text-xl font-bold mb-4">Enter Your Full Name</h2>
+  <mat-form-field>
+    <input matInput placeholder="Full Name" [(ngModel)]="fullName" />
+  </mat-form-field>
+
+  <div class="mt-4 flex justify-end space-x-2">
+    <button mat-button (click)="close()">Cancel</button>
+    <button mat-button (click)="startGame()" class="bg-indigo-500 text-white">
+      Start Game
+    </button>
+  </div>
+</div>
