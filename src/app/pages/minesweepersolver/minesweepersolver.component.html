@@ -1,0 +1,38 @@
+<div class="min-h-screen grid grid-cols-2 gap-4">
+  
+    <!-- Minesweeper Grid -->
+    <div class="flex flex-col items-center justify-center bg-blue-50 p-8">
+      <h3 class="text-xl font-bold text-gray-700 mb-6 text-center">Minesweeper Game</h3>
+      <div class="grid grid-cols-8 gap-1">
+        <div *ngFor="let row of minesweeperGrid; let r = index">
+          <div *ngFor="let cell of row; let c = index" 
+               class="w-10 h-10 bg-gray-300 border border-gray-500 flex items-center justify-center cursor-pointer"
+               (click)="handleCellClick(r, c)">
+            <!-- Placeholder for cell content -->
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Binomial Expansion Solver -->
+    <div class="flex flex-col items-center justify-center bg-green-50 p-8" *ngIf="!gameOver && selectedQuestion">
+        <h3 class="text-xl font-bold text-gray-700 mb-6 text-center">
+            Solve the {{ currentTermIndex + 1 }}<ng-container *ngIf="currentTermIndex === 0">st</ng-container>
+            <ng-container *ngIf="currentTermIndex === 1">nd</ng-container>
+            <ng-container *ngIf="currentTermIndex === 2">rd</ng-container>
+            <ng-container *ngIf="currentTermIndex > 2">th</ng-container>
+            term for {{ selectedQuestion.expression }}
+          </h3>
+  
+      <div class="mb-6">
+        <h4 class="text-lg font-semibold text-gray-600 mb-4">Coefficient: {{ selectedQuestion.coefficients[currentTermIndex] }}</h4>
+        <input [(ngModel)]="currentAnswer" class="p-2 border min-w-[300px] rounded-lg" placeholder="Enter your answer here">
+        <p class="text-sm text-gray-500 text-xs mt-2">Hint: Multiply the coefficient by the variable term.</p>
+      </div>
+  
+      <div class="mt-6 flex justify-end space-x-2">
+        <button mat-button (click)="solveTerm()" class="bg-indigo-500 text-white">Submit Answer</button>
+      </div>
+    </div>
+  </div>
+  

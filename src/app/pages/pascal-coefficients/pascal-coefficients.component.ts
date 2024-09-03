@@ -1,32 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-
-
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-pascal-coefficients',
   templateUrl: './pascal-coefficients.component.html',
   styleUrls: ['./pascal-coefficients.component.css']
 })
-export class PascalCoefficientsComponent {
-  
+export class PascalCoefficientsComponent implements OnInit {
+
   shuffledCoefficients: number[] = [];
   originalCoefficients: number[] = [];
   power!: number;
   expression!: string;
 
+  constructor(private router: Router){
+
+  }
   ngOnInit(): void {
-    let selectedQuestion = localStorage.getItem('selectedQuestion') ? JSON.parse(localStorage.getItem('selectedQuestion')!) as {coefficients: number[], expression: string, power: number} : null ;
-    if(selectedQuestion){
+    const selectedQuestionJson = localStorage.getItem('selectedQuestion');
+
+    if (selectedQuestionJson) {
+      const selectedQuestion = JSON.parse(selectedQuestionJson);
       this.originalCoefficients = selectedQuestion.coefficients;
       this.power = selectedQuestion.power;
       this.expression = selectedQuestion.expression;
 
       // Shuffle the coefficients
       this.shuffledCoefficients = this.shuffleArray([...this.originalCoefficients]);
+    } else {
+      console.error('No question found in localStorage.');
     }
-    
-   
   }
 
   shuffleArray(array: number[]): number[] {
@@ -44,12 +48,11 @@ export class PascalCoefficientsComponent {
   checkAnswer(): void {
     if (JSON.stringify(this.shuffledCoefficients) === JSON.stringify(this.originalCoefficients)) {
       alert('Correct! You’ve arranged the coefficients correctly.');
-      // Proceed to the next phase or navigate to the next task
+      setTimeout(() => {
+        this.router.navigate(['/minesweeper-solver'])
+      }, 1000)
     } else {
       alert('Incorrect. Please try again.');
     }
   }
 }
-
-
-

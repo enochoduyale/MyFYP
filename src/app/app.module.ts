@@ -19,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { GenerateQuestionComponent } from './pages/generate-question/generate-question.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { PascalCoefficientsComponent } from './pages/pascal-coefficients/pascal-coefficients.component';
+import { MinesweepersolverComponent } from './pages/minesweepersolver/minesweepersolver.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PascalCoefficientsComponent } from './pages/pascal-coefficients/pascal-
     GameInfoModalComponent,
     GenerateQuestionComponent,
     NotFoundPageComponent,
-    PascalCoefficientsComponent
+    PascalCoefficientsComponent,
+    MinesweepersolverComponent
   ],
   imports: [
     BrowserModule,
