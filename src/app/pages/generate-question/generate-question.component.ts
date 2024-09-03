@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./generate-question.component.css']
 })
 export class GenerateQuestionComponent {
-  questions = [
+  questions: {coefficients: number[], expression: string, power: number} [] = [
     { 
       power: 3, 
       coefficients: [1, 3, 3, 1], 

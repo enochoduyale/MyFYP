@@ -14,9 +14,11 @@ import {
 import { 
   MatButtonModule
 } from '@angular/material/button';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatDialogModule } from '@angular/material/dialog';
 import { GenerateQuestionComponent } from './pages/generate-question/generate-question.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { PascalCoefficientsComponent } from './pages/pascal-coefficients/pascal-coefficients.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
     StartGameModalComponent,
     GameInfoModalComponent,
     GenerateQuestionComponent,
-    NotFoundPageComponent
+    NotFoundPageComponent,
+    PascalCoefficientsComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +37,7 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
     FormsModule,
     MatDialogModule,
     MatInputModule,
+    DragDropModule,
     MatButtonModule,
   ],
   providers: [],
