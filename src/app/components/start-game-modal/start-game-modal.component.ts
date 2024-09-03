@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-start-game-modal',
@@ -9,7 +10,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class StartGameModalComponent {
   fullName: string = '';
 
-  constructor(public dialogRef: MatDialogRef<StartGameModalComponent>) {}
+  constructor(public dialogRef: MatDialogRef<StartGameModalComponent>, 
+    public router: Router) {}
 
   close(): void {
     this.dialogRef.close();
@@ -17,8 +19,8 @@ export class StartGameModalComponent {
 
   startGame(): void {
     if (this.fullName) {
-      localStorage.setItem('playerName', this.fullName);
       this.dialogRef.close();
+      this.router.navigate(['/generate-question'])
     }
   }
 }

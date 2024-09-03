@@ -15,13 +15,17 @@ import {
   MatButtonModule
 } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { GenerateQuestionComponent } from './pages/generate-question/generate-question.component';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameInterfaceComponent,
     StartGameModalComponent,
-    GameInfoModalComponent
+    GameInfoModalComponent,
+    GenerateQuestionComponent,
+    NotFoundPageComponent
   ],
   imports: [
     BrowserModule,
