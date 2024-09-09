@@ -22,6 +22,7 @@ import { PascalCoefficientsComponent } from './pages/pascal-coefficients/pascal-
 import { MinesweepersolverComponent } from './pages/minesweepersolver/minesweepersolver.component';
 import { TimerComponent } from './components/timer/timer.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { LeaderboardComponent } from './pages/leaderboard/leaderboard.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { NotificationComponent } from './components/notification/notification.co
     PascalCoefficientsComponent,
     MinesweepersolverComponent,
     TimerComponent,
-    NotificationComponent
+    NotificationComponent,
+    LeaderboardComponent
   ],
   imports: [
     BrowserModule,

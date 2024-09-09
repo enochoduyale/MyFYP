@@ -51,19 +51,7 @@ export class PascalCoefficientsComponent implements OnInit {
     }
   
     // Handle when time is up (stop the rearrangement, end the game)
-    onTimeUp(): void {
-      alert('Time is up! The game is over.');
-      // Handle what happens when the time is up
-      this.endGame();
-    }
-  
-    // Logic to end the game
-    endGame(): void {
-      // Stop the timer
-      this.timerComponent.stopTimer();
-      // Handle the game over logic
-      alert('Game over!');
-    }
+    
   shuffleArray(array: number[]): number[] {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -81,7 +69,7 @@ export class PascalCoefficientsComponent implements OnInit {
       alert('Correct! You’ve arranged the coefficients correctly.');
       setTimeout(() => {
         this.router.navigate(['/minesweeper-solver'])
-      }, 1000)
+      }, 2000)
     } else {
       alert('Incorrect. Please try again.');
     }

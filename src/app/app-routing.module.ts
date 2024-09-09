@@ -5,12 +5,14 @@ import { GenerateQuestionComponent } from './pages/generate-question/generate-qu
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { PascalCoefficientsComponent } from './pages/pascal-coefficients/pascal-coefficients.component';
 import { MinesweepersolverComponent } from './pages/minesweepersolver/minesweepersolver.component';
+import { LeaderboardComponent } from './pages/leaderboard/leaderboard.component';
 
 const routes: Routes = [
   {path: 'game-interface', component: GameInterfaceComponent},
   {path: 'generate-question', component: GenerateQuestionComponent},
   {path: 'pascal-coefficients', component: PascalCoefficientsComponent},
   {path: 'minesweeper-solver', component: MinesweepersolverComponent},
+  {path: 'leaderboard', component: LeaderboardComponent},
   {path: 'not-found', component:NotFoundPageComponent},
 
   {path: '', redirectTo: 'game-interface', pathMatch:'full'},
