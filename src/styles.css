@@ -4,3 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
+ .mat-mdc-raised-button {
+    background: white !important;
+    text:#4f46e5;
+    border-radius: 8x !important;
+    
+}

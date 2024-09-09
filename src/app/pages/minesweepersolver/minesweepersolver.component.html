@@ -1,38 +1,94 @@
-<div class="min-h-screen grid grid-cols-2 gap-4">
-  
-    <!-- Minesweeper Grid -->
-    <div class="flex flex-col items-center justify-center bg-blue-50 p-8">
-      <h3 class="text-xl font-bold text-gray-700 mb-6 text-center">Minesweeper Game</h3>
-      <div class="grid grid-cols-8 gap-1">
-        <div *ngFor="let row of minesweeperGrid; let r = index">
-          <div *ngFor="let cell of row; let c = index" 
-               class="w-10 h-10 bg-gray-300 border border-gray-500 flex items-center justify-center cursor-pointer"
-               (click)="handleCellClick(r, c)">
-            <!-- Placeholder for cell content -->
-          </div>
+<div class="min-h-screen grid grid-cols-2 gap-4 bg-gray-100 p-8">
+  <!-- Minesweeper Grid -->
+  <div
+    class="flex flex-col items-center justify-center bg-blue-100 rounded-lg shadow-lg p-8"
+  >
+    <h3
+      class="text-2xl font-extrabold text-gray-800 mb-6 text-center uppercase tracking-wide"
+    >
+      Minesweeper Game
+    </h3>
+    <div class="grid grid-cols-8 gap-2">
+      <div *ngFor="let row of minesweeperGrid; let r = index">
+        <div
+          *ngFor="let cell of row; let c = index"
+          class="w-12 h-12 bg-gray-300 hover:bg-gray-400 rounded-lg border border-gray-400 flex items-center justify-center cursor-pointer shadow-md transition ease-in-out duration-150"
+          (click)="handleCellClick(r, c)"
+        >
+          <!-- Placeholder for cell content -->
         </div>
       </div>
     </div>
-  
-    <!-- Binomial Expansion Solver -->
-    <div class="flex flex-col items-center justify-center bg-green-50 p-8" *ngIf="!gameOver && selectedQuestion">
-        <h3 class="text-xl font-bold text-gray-700 mb-6 text-center">
-            Solve the {{ currentTermIndex + 1 }}<ng-container *ngIf="currentTermIndex === 0">st</ng-container>
-            <ng-container *ngIf="currentTermIndex === 1">nd</ng-container>
-            <ng-container *ngIf="currentTermIndex === 2">rd</ng-container>
-            <ng-container *ngIf="currentTermIndex > 2">th</ng-container>
-            term for {{ selectedQuestion.expression }}
-          </h3>
-  
-      <div class="mb-6">
-        <h4 class="text-lg font-semibold text-gray-600 mb-4">Coefficient: {{ selectedQuestion.coefficients[currentTermIndex] }}</h4>
-        <input [(ngModel)]="currentAnswer" class="p-2 border min-w-[300px] rounded-lg" placeholder="Enter your answer here">
-        <p class="text-sm text-gray-500 text-xs mt-2">Hint: Multiply the coefficient by the variable term.</p>
+  </div>
+
+  <!-- Binomial Expansion Solver -->
+  <div
+    class="flex flex-col items-center justify-center bg-green-100 rounded-lg shadow-lg p-8"
+    *ngIf="selectedQuestion"
+  >
+    <app-notification
+      *ngIf="showNotification"
+      [message]="notificationMessage"
+      [type]="notificationType"
+    ></app-notification>
+    <div class="mt-4 flex flex-col items-center justify-center" *ngIf="!gameOver">
+      <div class="mb-36">
+        <h3>
+          Example: (a+b)<sup>3</sup> = (a)<sup>3</sup>(b)<sup>0</sup> +
+          (a)<sup>2</sup>(b)<sup>1</sup> + (a)(b)<sup>2</sup> + (a)<sup>0</sup>(b)<sup>3</sup>
+        </h3>
       </div>
-  
+
+      <h3 class="text-4xl font-bold text-gray-900 mb-6 text-center">
+        Solve the
+        <span class="text-green-600"
+          >{{ currentTermIndex + 1
+          }}<ng-container *ngIf="currentTermIndex === 0">st</ng-container>
+          <ng-container *ngIf="currentTermIndex === 1">nd</ng-container>
+          <ng-container *ngIf="currentTermIndex === 2">rd</ng-container>
+          <ng-container *ngIf="currentTermIndex > 2">th</ng-container></span
+        >
+        term for
+        <span class="block text-indigo-600 font-extrabold">{{
+          selectedQuestion.expression
+        }}</span>
+      </h3>
+
+      <div class="mb-6 bg-white shadow-md rounded-lg p-6 w-full max-w-md">
+        <h4 class="text-xl font-semibold text-gray-700 mb-4 text-center">
+          Coefficient:
+          <span class="text-indigo-500">{{
+            selectedQuestion.coefficients[currentTermIndex]
+          }}</span>
+        </h4>
+        <input
+          [(ngModel)]="currentAnswer"
+          class="w-full p-3 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+          placeholder="Enter your answer here"
+        />
+        <p class="text-sm text-gray-500 mt-4 text-center italic">
+          Hint: Multiply the coefficient by the variable term.
+        </p>
+      </div>
+
       <div class="mt-6 flex justify-end space-x-2">
-        <button mat-button (click)="solveTerm()" class="bg-indigo-500 text-white">Submit Answer</button>
+        <button
+          mat-raised-button
+          (click)="solveTerm()"
+          class="bg-indigo-600 text-white font-medium py-2 px-4 rounded-lg hover:bg-indigo-700 shadow-md transition ease-in-out duration-150"
+        >
+          Submit Answer
+        </button>
       </div>
     </div>
+    <div *ngIf="gameOver">
+
+
+      <button routerLink="/generate-question"  class="px-6 py-3 bg-white text-indigo-600 font-semibold rounded-lg shadow-md hover:bg-indigo-100">
+          Go back
+        </button>
+    </div>
   </div>
-  
+
+
+</div>

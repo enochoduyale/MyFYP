@@ -12,6 +12,13 @@ export class MinesweepersolverComponent implements OnInit {
   currentTermIndex: number = 0;
   currentAnswer: string = '';
   gameOver: boolean = false;
+  points: number = 0; // Track points
+
+  notificationMessage: string = ''; // Store the notification message
+  notificationType: 'success' | 'error' = 'success'; // Notification type (success or error)
+  showNotification: true | false = false;
+
+
 
   ngOnInit(): void {
     this.initializeGame();
@@ -82,26 +89,42 @@ export class MinesweepersolverComponent implements OnInit {
       }
     }
   }
+  endGame(): void {
+    this.gameOver = true;
+    const totalQuestions = this.selectedQuestion?.answers.length || 0;
+    const scorePercentage = (this.points / (totalQuestions * 10)) * 100;
+    this.showNotification = true;
+    this.notificationMessage = `Game Over! Your final score: ${scorePercentage}%`;
+    this.notificationType = 'success';
+  }
 
   solveTerm(): void {
     if (!this.selectedQuestion) {
       return;
     }
-    
+
     const correctAnswer = this.selectedQuestion.answers[this.currentTermIndex];
-    
-    // Validate the current answer (assuming the user input matches the exact string)
+
+    // Check if the user's answer is correct
     if (this.currentAnswer.trim() === correctAnswer) {
-      alert('Correct!');
+      this.points += 10; // Add 10 points for each correct answer
+      this.showNotification = true;
+      this.notificationMessage = 'Correct! 10 points added!';
+      this.notificationType = 'success';
+      setTimeout(() => {
+      this.showNotification = false;
+      }, 1500)
       this.currentTermIndex++;
       this.currentAnswer = '';
 
       if (this.currentTermIndex >= this.selectedQuestion.answers.length) {
-        alert('You solved all terms! You win!');
-        this.gameOver = true;
+        this.endGame();
+      
       }
     } else {
-      alert('Incorrect. Try again. Remember to multiply the coefficient by the variable term.');
+      this.showNotification = true;
+      this.notificationMessage = 'Incorrect. Try again.';
+      this.notificationType = 'error';
     }
   }
 }

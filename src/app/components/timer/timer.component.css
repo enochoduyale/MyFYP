@@ -1,0 +1,8 @@
+/* Simple styling for the timer component */
+.text-lg {
+    font-size: 1.25rem;
+  }
+  .text-red-600 {
+    color: #e3342f;
+  }
+  

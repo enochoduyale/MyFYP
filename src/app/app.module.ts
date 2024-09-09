@@ -20,6 +20,8 @@ import { GenerateQuestionComponent } from './pages/generate-question/generate-qu
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { PascalCoefficientsComponent } from './pages/pascal-coefficients/pascal-coefficients.component';
 import { MinesweepersolverComponent } from './pages/minesweepersolver/minesweepersolver.component';
+import { TimerComponent } from './components/timer/timer.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { MinesweepersolverComponent } from './pages/minesweepersolver/minesweepe
     GenerateQuestionComponent,
     NotFoundPageComponent,
     PascalCoefficientsComponent,
-    MinesweepersolverComponent
+    MinesweepersolverComponent,
+    TimerComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

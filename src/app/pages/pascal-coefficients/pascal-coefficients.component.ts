@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TimerComponent } from 'src/app/components/timer/timer.component';
 
 @Component({
   selector: 'app-pascal-coefficients',
@@ -13,11 +14,18 @@ export class PascalCoefficientsComponent implements OnInit {
   originalCoefficients: number[] = [];
   power!: number;
   expression!: string;
+  notificationMessage: string = ''; // Store the notification message
+  notificationType: 'success' | 'error' = 'success'; // Notification type (success or error)
 
+
+  @ViewChild(TimerComponent) timerComponent!: TimerComponent; // Access the timer component
+
+  gameStarted: boolean = false;
   constructor(private router: Router){
 
   }
   ngOnInit(): void {
+
     const selectedQuestionJson = localStorage.getItem('selectedQuestion');
 
     if (selectedQuestionJson) {
@@ -32,7 +40,30 @@ export class PascalCoefficientsComponent implements OnInit {
       console.error('No question found in localStorage.');
     }
   }
+  ngAfterViewInit() {
+    this.timerComponent.startTimer(); 
+ }
 
+    // Start the Pascal rearrangement and trigger the timer
+    startPascalRearrangement(): void {
+      this.gameStarted = true;
+      this.timerComponent.startTimer(); // Start the timer when the game starts
+    }
+  
+    // Handle when time is up (stop the rearrangement, end the game)
+    onTimeUp(): void {
+      alert('Time is up! The game is over.');
+      // Handle what happens when the time is up
+      this.endGame();
+    }
+  
+    // Logic to end the game
+    endGame(): void {
+      // Stop the timer
+      this.timerComponent.stopTimer();
+      // Handle the game over logic
+      alert('Game over!');
+    }
   shuffleArray(array: number[]): number[] {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));

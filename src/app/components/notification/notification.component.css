@@ -1,0 +1,15 @@
+.notification {
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 1rem 0;
+    font-weight: bold;
+    text-align: center;
+  }
+  .success {
+    background-color: #38a169;
+    color: white;
+  }
+  .error {
+    background-color: #e53e3e;
+    color: white;
+  }
