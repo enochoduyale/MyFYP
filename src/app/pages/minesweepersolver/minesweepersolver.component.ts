@@ -172,9 +172,9 @@ export class MinesweepersolverComponent implements OnInit {
       this.showNotification = true;
       this.notificationMessage = 'Correct! 10 points added!';
       this.notificationType = 'success';
-      setTimeout(() => {
-        this.showNotification = false;
-      }, 1500);
+      // setTimeout(() => {
+      //   this.showNotification = false;
+      // }, 1500);
 
       this.currentTermIndex++;
       this.currentAnswer = '';
@@ -201,8 +201,12 @@ export class MinesweepersolverComponent implements OnInit {
     const totalQuestions = this.selectedQuestion?.answers.length || 0;
     const scorePercentage = (this.points / (totalQuestions * 10)) * 100;
     this.showNotification = true;
-    this.notificationMessage = `Game Over! Your final score: ${scorePercentage}%`;
+    this.notificationMessage = `You win! Your final score: ${scorePercentage}%`;
     this.notificationType = 'success';
+  }
+
+  get youWin(){
+    return this.notificationMessage.includes('You win! Your');
   }
 }
 

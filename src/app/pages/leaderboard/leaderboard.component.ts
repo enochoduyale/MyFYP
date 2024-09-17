@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeaderboardComponent implements OnInit {
   leaderboard = [
-    { position: 1, name: 'Chukwuemeka Nnaji', score: 100 },
-    { position: 2, name: 'Fatima Abdullahi', score: 95 },
+    { position: 1, name: 'Chukwuemeka Roseline', score: 100 },
+    { position: 2, name: 'Fatima Orimisan', score: 95 },
     { position: 3, name: 'Tunde Akinola', score: 90 },
     { position: 4, name: 'Ngozi Okonkwo', score: 85 },
     { position: 5, name: 'Bola Adeyemi', score: 80 },
