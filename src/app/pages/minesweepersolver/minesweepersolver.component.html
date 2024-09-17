@@ -44,11 +44,25 @@
     </div>
 
     <!-- Binomial Expansion Solver -->
-    <div class="flex flex-col items-center justify-center bg-green-100 rounded-lg shadow-lg p-8">
-      <span>
+    <div class="relative flex flex-col items-center justify-center bg-green-100 rounded-lg shadow-lg p-8">
+      <!-- <span>
         Hint: (a+b)<sup>3</sup> = a<sup>3</sup>b<sup>0</sup> + a<sup>2</sup>b<sup>1</sup> + a<sup>1</sup>b<sup>2</sup> + a<sup>0</sup>b<sup>3</sup>
 
-      </span>
+      </span> -->
+      <div class="absolute right-4 top-0 hint-section">
+        <button class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+                (click)="showHint()">
+          Show Hint
+        </button>
+      </div>
+      
+      <!-- Section to display the hint message -->
+      <div *ngIf="hintMessage" class="hint-message bg-yellow-100 p-4 rounded-lg mt-8">
+        {{ hintMessage }}
+      </div>
+      
+      <div class="pt-[80px] flex flex-col items-center justify-center ">
+
       <h3 class="!text-2xl font-semibold mb-4">Step {{ currentTermIndex + 1 }}</h3>
       
       <div class="mb-6 bg-white shadow-md rounded-lg p-6 w-full max-w-md">
@@ -63,9 +77,8 @@
           Coefficient: {{ selectedQuestion?.coefficients?.[currentTermIndex] }}
         </h5>
         <input [(ngModel)]="currentAnswer" 
-               class="w-full p-3 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+               class="min-w-[350px] p-3 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                placeholder="Enter your answer here">
-        <p class="text-sm text-gray-500 mt-4 text-center italic">Hint: Multiply the coefficient by the variable term.</p>
       </div>
 
       <div class="mt-6 flex justify-end space-x-2">
@@ -76,6 +89,8 @@
     </div>
 
   </div>
+</div>
+
 
 
 

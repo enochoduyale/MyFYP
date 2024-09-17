@@ -17,6 +17,7 @@ export class MinesweepersolverComponent implements OnInit {
   minesweeperGrid: Cell[][] = [];
   selectedQuestion: { coefficients: number[], expression: string, power: number, answers: string[] } | null = null;
   currentTermIndex: number = 0;
+  hintMessage: string | null = null; // To store the hint message
   currentAnswer: string = '';
   gameOver: boolean = false;
   points: number = 0; // Track points
@@ -29,6 +30,12 @@ export class MinesweepersolverComponent implements OnInit {
   mineCount: number = 10;
   totalSafeCells: number = 0; // Track safe cells
   timerInterval: any;
+  hints: string[] = [
+    'Hint for the first term: Use the full power of a, and b is raised to 0. Finally multiply by the coefficient below',
+    'Hint for the second term: Decrease the power of a by 1, and increase the power of b by 1. Finally multiply by the coefficient below',
+    'Hint for the third term: The power of a decreases again, and the power of b increases further. Finally multiply by the coefficient below',
+    'Hint for the fourth term: The powers of a and b are balancing out, keep the pattern going. Finally multiply by the coefficient below'
+  ];
 
   @ViewChild(TimerComponent) timerComponent!: TimerComponent; // Access the timer component
 
@@ -172,6 +179,8 @@ export class MinesweepersolverComponent implements OnInit {
       this.showNotification = true;
       this.notificationMessage = 'Correct! 10 points added!';
       this.notificationType = 'success';
+      this.hintMessage = null; // Reset hint message when moving to the next term
+
       // setTimeout(() => {
       //   this.showNotification = false;
       // }, 1500);
@@ -194,6 +203,17 @@ export class MinesweepersolverComponent implements OnInit {
     this.timerComponent.stopTimer();
     this.endGame();
   }
+
+  // Method to display a hint for the current term
+  showHint(): void {
+    if (this.currentTermIndex < this.hints.length) {
+      this.hintMessage = this.hints[this.currentTermIndex];
+    } else {
+      this.hintMessage = 'No more hints available for this step.';
+    }
+  }
+
+
 
   // End game logic
   endGame(): void {
