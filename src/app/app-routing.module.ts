@@ -6,6 +6,7 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
 import { PascalCoefficientsComponent } from './pages/pascal-coefficients/pascal-coefficients.component';
 import { MinesweepersolverComponent } from './pages/minesweepersolver/minesweepersolver.component';
 import { LeaderboardComponent } from './pages/leaderboard/leaderboard.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 const routes: Routes = [
   {path: 'game-interface', component: GameInterfaceComponent},
@@ -13,6 +14,8 @@ const routes: Routes = [
   {path: 'pascal-coefficients', component: PascalCoefficientsComponent},
   {path: 'minesweeper-solver', component: MinesweepersolverComponent},
   {path: 'leaderboard', component: LeaderboardComponent},
+  {path: 'logout', component: LogoutComponent},
+
   {path: 'not-found', component:NotFoundPageComponent},
 
   {path: '', redirectTo: 'game-interface', pathMatch:'full'},

@@ -23,6 +23,7 @@ import { MinesweepersolverComponent } from './pages/minesweepersolver/minesweepe
 import { TimerComponent } from './components/timer/timer.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { LeaderboardComponent } from './pages/leaderboard/leaderboard.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { LeaderboardComponent } from './pages/leaderboard/leaderboard.component'
     MinesweepersolverComponent,
     TimerComponent,
     NotificationComponent,
-    LeaderboardComponent
+    LeaderboardComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

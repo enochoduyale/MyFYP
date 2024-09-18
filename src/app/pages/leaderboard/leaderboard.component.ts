@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./leaderboard.component.css']
 })
 export class LeaderboardComponent implements OnInit {
+
   leaderboard = [
     { position: 1, name: 'Chukwuemeka Roseline', score: 100 },
     { position: 2, name: 'Fatima Orimisan', score: 90 },
@@ -19,8 +20,23 @@ export class LeaderboardComponent implements OnInit {
     { position: 10, name: 'Adebayo Aluko', score: 50 }
   ];
 
-  constructor() { }
-
   ngOnInit(): void {
+    // Check if leaderboard already exists in localStorage
+    const storedLeaderboard = localStorage.getItem('leaderboard');
+    
+    if (!storedLeaderboard) {
+      // If no leaderboard exists, store the default one in localStorage
+      localStorage.setItem('leaderboard', JSON.stringify(this.leaderboard));
+    } else {
+      // If it exists, load it from localStorage
+      this.leaderboard = JSON.parse(storedLeaderboard);
+    }
   }
+
+  // Method to update the leaderboard in localStorage
+  updateLeaderboard(newLeaderboard: any[]): void {
+    this.leaderboard = newLeaderboard;
+    localStorage.setItem('leaderboard', JSON.stringify(this.leaderboard));
+  }
+
 }
