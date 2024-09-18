@@ -26,6 +26,7 @@ export class MinesweepersolverComponent implements OnInit {
   notificationType: 'success' | 'error' = 'success'; // Notification type (success or error)
   showNotification: boolean = false;
   finalExpression!: string | undefined;
+  cellSelected: boolean = false;
 
   gridSize: number = 8;
   mineCount: number = 10;
@@ -124,6 +125,21 @@ export class MinesweepersolverComponent implements OnInit {
   }
 
   // Handle cell click in Minesweeper
+  // handleCellClick(row: number, col: number): void {
+  //   if (this.gameOver || this.minesweeperGrid[row][col].isRevealed) {
+  //     return;
+  //   }
+
+  //   if (this.minesweeperGrid[row][col].isMine) {
+  //     this.gameOver = true;
+  //     this.revealAllMines();
+  //     alert('Game Over! You clicked on a mine.');
+  //   } else {
+  //     this.revealCell(row, col);
+  //   }
+  // }
+
+
   handleCellClick(row: number, col: number): void {
     if (this.gameOver || this.minesweeperGrid[row][col].isRevealed) {
       return;
@@ -135,6 +151,7 @@ export class MinesweepersolverComponent implements OnInit {
       alert('Game Over! You clicked on a mine.');
     } else {
       this.revealCell(row, col);
+      this.cellSelected = true; // Mark that the user selected a safe cell
     }
   }
 
@@ -172,24 +189,61 @@ export class MinesweepersolverComponent implements OnInit {
   }
 
   // Solve a binomial term
+  // solveTerm(): void {
+  //   if (!this.selectedQuestion) {
+  //     return;
+  //   }
+
+  //   const correctAnswer = this.selectedQuestion.answers[this.currentTermIndex];
+
+  //   // Check if the user's answer is correct
+  //   if (this.currentAnswer.trim() === correctAnswer) {
+  //     this.points += 10; // Add 10 points for each correct answer
+  //     this.showNotification = true;
+  //     this.notificationMessage = 'Correct! 10 points added!';
+  //     this.notificationType = 'success';
+  //     this.hintMessage = null; // Reset hint message when moving to the next term
+
+  //     // setTimeout(() => {
+  //     //   this.showNotification = false;
+  //     // }, 1500);
+
+  //     this.currentTermIndex++;
+  //     this.currentAnswer = '';
+
+  //     if (this.currentTermIndex >= this.selectedQuestion.answers.length) {
+  //       this.endGame();
+  //     }
+  //   } else {
+  //     this.showNotification = true;
+  //     this.notificationMessage = 'Incorrect. Try again.';
+  //     this.notificationType = 'error';
+  //   }
+  // }
+
   solveTerm(): void {
     if (!this.selectedQuestion) {
       return;
     }
 
+    // Check if the user has selected a cell before proceeding
+    if (!this.cellSelected) {
+      this.showNotification = true;
+      this.notificationMessage = 'Please select a Minesweeper cell before solving the term!';
+      this.notificationType = 'error';
+      return;
+    }
+
     const correctAnswer = this.selectedQuestion.answers[this.currentTermIndex];
 
-    // Check if the user's answer is correct
     if (this.currentAnswer.trim() === correctAnswer) {
-      this.points += 10; // Add 10 points for each correct answer
+      this.points += 10;
       this.showNotification = true;
       this.notificationMessage = 'Correct! 10 points added!';
       this.notificationType = 'success';
-      this.hintMessage = null; // Reset hint message when moving to the next term
+      this.hintMessage = null;
 
-      // setTimeout(() => {
-      //   this.showNotification = false;
-      // }, 1500);
+      this.cellSelected = false; // Reset the flag for the next term
 
       this.currentTermIndex++;
       this.currentAnswer = '';
@@ -203,6 +257,7 @@ export class MinesweepersolverComponent implements OnInit {
       this.notificationType = 'error';
     }
   }
+
 
   onTimeUp(): void {
     alert('Time is up! The game is over.');
