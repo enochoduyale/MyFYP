@@ -8,15 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class LeaderboardComponent implements OnInit {
   leaderboard = [
     { position: 1, name: 'Chukwuemeka Roseline', score: 100 },
-    { position: 2, name: 'Fatima Orimisan', score: 95 },
+    { position: 2, name: 'Fatima Orimisan', score: 90 },
     { position: 3, name: 'Tunde Akinola', score: 90 },
-    { position: 4, name: 'Ngozi Okonkwo', score: 85 },
+    { position: 4, name: 'Olalekan Alao', score: 80 },
     { position: 5, name: 'Bola Adeyemi', score: 80 },
-    { position: 6, name: 'Musa Lawal', score: 75 },
-    { position: 7, name: 'Amaka Eze', score: 70 },
-    { position: 8, name: 'Ibrahim Suleiman', score: 65 },
+    { position: 6, name: 'Bilikis Lawal', score: 70 },
+    { position: 7, name: 'Adaeze Johnson', score: 70 },
+    { position: 8, name: 'Joy Adegoke', score: 60 },
     { position: 9, name: 'Folake Ogunleye', score: 60 },
-    { position: 10, name: 'Adebayo Aluko', score: 55 }
+    { position: 10, name: 'Adebayo Aluko', score: 50 }
   ];
 
   constructor() { }

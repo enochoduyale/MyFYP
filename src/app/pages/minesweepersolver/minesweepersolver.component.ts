@@ -25,6 +25,7 @@ export class MinesweepersolverComponent implements OnInit {
   notificationMessage: string = ''; // Store the notification message
   notificationType: 'success' | 'error' = 'success'; // Notification type (success or error)
   showNotification: boolean = false;
+  finalExpression!: string | undefined;
 
   gridSize: number = 8;
   mineCount: number = 10;
@@ -34,13 +35,18 @@ export class MinesweepersolverComponent implements OnInit {
     'Hint for the first term: Use the full power of a, and b is raised to 0. Finally multiply by the coefficient below',
     'Hint for the second term: Decrease the power of a by 1, and increase the power of b by 1. Finally multiply by the coefficient below',
     'Hint for the third term: The power of a decreases again, and the power of b increases further. Finally multiply by the coefficient below',
-    'Hint for the fourth term: The powers of a and b are balancing out, keep the pattern going. Finally multiply by the coefficient below'
+    'Hint for the third term: The power of a decreases again, and the power of b increases further. Finally multiply by the coefficient below',
+    'Hint for the third term: The power of a decreases again, and the power of b increases further. Finally multiply by the coefficient below',
+    'Hint for the third term: The power of a decreases again, and the power of b increases further. Finally multiply by the coefficient below',
+
   ];
 
   @ViewChild(TimerComponent) timerComponent!: TimerComponent; // Access the timer component
 
   ngOnInit(): void {
     this.initializeGame();
+    this.formattedAnswers();
+
   }
 
   ngAfterViewInit() {
@@ -222,12 +228,24 @@ export class MinesweepersolverComponent implements OnInit {
     const scorePercentage = (this.points / (totalQuestions * 10)) * 100;
     this.showNotification = true;
     this.notificationMessage = `You win! Your final score: ${scorePercentage}%`;
+    this.formattedAnswers();
     this.notificationType = 'success';
   }
 
   get youWin(){
     return this.notificationMessage.includes('You win! Your');
   }
+
+  
+  formattedAnswers() {
+   this.finalExpression =  this.selectedQuestion?.answers.map((answer, index) => {
+      // For all elements except the first, prepend a "+" if they don't start with a minus sign
+      if (index !== 0 && !answer.startsWith('-')) {
+        return `+ ${answer}`;
+      }
+      return answer; // Keep the first element or any element starting with a minus as-is
+    }).join(' ');
+  } 
 }
 
 
