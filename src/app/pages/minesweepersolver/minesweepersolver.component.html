@@ -1,5 +1,5 @@
 <div *ngIf="!gameOver" class="absolute right-4 top-4">
-  <app-timer [startTime]="200" (timeUp)="onTimeUp()"></app-timer>
+  <app-timer [startTime]="10 * 60" (timeUp)="onTimeUp()"></app-timer>
 </div>
 
 <div class="min-h-screen flex flex-col items-center justify-center space-y-6">
