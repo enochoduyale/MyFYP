@@ -146,7 +146,8 @@ export class MinesweepersolverComponent implements OnInit {
     }
 
     if (this.minesweeperGrid[row][col].isMine) {
-      this.gameOver = true;
+      // this.gameOver = true;
+      this.endGame()
       this.revealAllMines();
       alert('Game Over! You clicked on a mine.');
     } else {
@@ -282,7 +283,7 @@ export class MinesweepersolverComponent implements OnInit {
     const totalQuestions = this.selectedQuestion?.answers.length || 0;
     const scorePercentage = (this.points / (totalQuestions * 10)) * 100;
     this.showNotification = true;
-    this.notificationMessage = `You win! Your final score: ${scorePercentage}%`;
+    this.notificationMessage = `Your final score: ${scorePercentage}%`;
     this.formattedAnswers();
     this.notificationType = 'success';
   }
